@@ -4,9 +4,6 @@ services:
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:8.12.0
     container_name: elasticsearch
-    # environment:
-    #   - discovery.type=single-node
-    #   - xpack.security.enabled=false
     environment:
       - discovery.type=single-node
       - ELASTIC_PASSWORD=changeme
@@ -31,12 +28,8 @@ services:
   kibana:
     image: docker.elastic.co/kibana/kibana:8.12.0
     container_name: kibana
-    # environment:
-    #   - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
     environment:
       - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
-      # - ELASTICSEARCH_USERNAME=elastic
-      # - ELASTICSEARCH_PASSWORD=changeme
       - ELASTICSEARCH_SERVICEACCOUNTTOKEN=AAEAAWVsYXN0aWMva2liYW5hL2tpYmFuYS1zZXJ2aWNlLXRva2VuOlcxVU9pU0haUjk2OVBzTHI2aFhOZEE
       - xpack.fleet.agents.enabled=true
       - xpack.security.enabled=true
@@ -44,7 +37,6 @@ services:
       - xpack.encryptedSavedObjects.encryptionKey=atleast32characterslongsecretenckey!
       - xpack.reporting.encryptionKey=32charssecureforreportingkeys 
       - xpack.security.encryptionKey=sessionkey1234567890abcdefghij      
-      
     volumes:
       - ./kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
     ports:
@@ -59,7 +51,7 @@ services:
     volumes:
       - ./filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml
       - ./filebeat/logs:/usr/share/filebeat/logs:ro
-    command: ["sh", "-c", "chmod go-w /usr/share/filebeat/filebeat.yml && filebeat -e"]  
+    command: ["sh", "-c", "chmod go-w /usr/share/filebeat/filebeat.yml && filebeat -e"]
     depends_on:
       - logstash
 
@@ -68,6 +60,4 @@ services:
     container_name: endpoint-agent
     tty: true
     stdin_open: true
-    command: [ "bash", "-c", "while true; do sleep 1000; done" ]
-      
-      
+    command: ["bash", "-c", "while true; do sleep 1000; done"]
