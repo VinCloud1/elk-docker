@@ -43,6 +43,7 @@ services:
       - xpack.fleet.packages=["endpoint"]
       - xpack.encryptedSavedObjects.encryptionKey=atleast32characterslongsecretenckey!
       - xpack.reporting.encryptionKey=32charssecureforreportingkeys 
+      - xpack.security.encryptionKey=sessionkey1234567890abcdefghij      
       
     volumes:
       - ./kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
