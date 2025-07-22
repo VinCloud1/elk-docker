@@ -35,8 +35,9 @@ services:
     #   - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
     environment:
       - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
-      - ELASTICSEARCH_USERNAME=elastic
-      - ELASTICSEARCH_PASSWORD=changeme
+      # - ELASTICSEARCH_USERNAME=elastic
+      # - ELASTICSEARCH_PASSWORD=changeme
+      - ELASTICSEARCH_SERVICEACCOUNTTOKEN=AAEAAWVsYXN0aWMva2liYW5hL2tpYmFuYS1zZXJ2aWNlLXRva2VuOlcxVU9pU0haUjk2OVBzTHI2aFhOZEE
       - xpack.fleet.agents.enabled=true
       - xpack.security.enabled=true
       - xpack.fleet.packages=["endpoint"]
