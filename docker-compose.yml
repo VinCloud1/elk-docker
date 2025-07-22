@@ -9,13 +9,10 @@ services:
     #   - xpack.security.enabled=false
     environment:
       - discovery.type=single-node
-      - xpack.security.enabled=true
       - ELASTIC_PASSWORD=changeme
+      - xpack.security.enabled=true
       - xpack.security.authc.api_key.enabled=true
-      - xpack.fleet.enabled=true
-      - xpack.agent.enabled=true
-      - xpack.security.enrollment.enabled=true
-      - xpack.ingestManager.enabled=true      
+      - xpack.security.enrollment.enabled=true  
     volumes:
       - ./elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
     ports:
@@ -42,7 +39,8 @@ services:
       - ELASTICSEARCH_PASSWORD=changeme
       - xpack.fleet.agents.enabled=true
       - xpack.security.enabled=true
-      - xpack.fleet.packages=["endpoint"]    
+      - xpack.fleet.packages=["endpoint"]
+      - xpack.encryptedSavedObjects.encryptionKey=some_random_long_key_1234     
     volumes:
       - ./kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
     ports:
