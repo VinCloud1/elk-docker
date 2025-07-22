@@ -41,7 +41,9 @@ services:
       - xpack.fleet.agents.enabled=true
       - xpack.security.enabled=true
       - xpack.fleet.packages=["endpoint"]
-      - xpack.encryptedSavedObjects.encryptionKey=some_random_long_key_1234     
+      - xpack.encryptedSavedObjects.encryptionKey=atleast32characterslongsecretenckey!
+      - xpack.reporting.encryptionKey=32charssecureforreportingkeys 
+      
     volumes:
       - ./kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
     ports:
